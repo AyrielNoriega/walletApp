@@ -1,12 +1,19 @@
 import React from "react";
 
-const TransferList = () => (
+const TransferList = ({transfers}) => (
     <table className='table'>
         <tbody>
-            <tr>
-                <td>Ejemplo</td>
-                <td>1200.00</td>
-            </tr>
+            { transfers.map((transfer) => (
+                <tr key={transfer.id}>
+                    <td>{transfer.description}</td>
+                    <td
+                        className={transfer.amount > 0 ? 'text-success' : 'text-danger'}
+                    >
+                        {transfer.amount}
+                    </td>
+                </tr>
+
+            )) }
         </tbody>
     </table>
 );
