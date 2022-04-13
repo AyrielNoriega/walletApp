@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { TransferForm } from './TransferForm';
+import { TransferList } from './TransferList';
 
 export default class Example extends Component {
     render() {
         return (
             <div className="container">
                 <div className="row justify-content-center">
-                    <div className="col-md-8">
-                        <div className="card">
-                            <div className="card-header">Example Component</div>
-
-                            <div className="card-body">I'm an example component!</div>
-                        </div>
+                    <div className="col-md-12 m-t-md">
+                        <p className='title'> $ 1000 </p>
                     </div>
+                    <div className='col-md-12'>
+                        <TransferForm />
+                    </div>
+                </div>
+                <div className="m-t-d">
+                    <TransferList />
                 </div>
             </div>
         );
