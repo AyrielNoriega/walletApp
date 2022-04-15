@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { TransferForm } from './TransferForm';
 import { TransferList } from './TransferList';
+import { url } from '../url';
 
 export default class Example extends Component {
     constructor(props){
@@ -35,7 +36,7 @@ export default class Example extends Component {
                 body: JSON.stringify(this.state.form)
             }
 
-            let res = await fetch('http://walletapp.test/api/transfer', config);
+            let res = await fetch(`${url}/api/transfer`, config);
             let data = await  res.json();
 
             this.setState({
@@ -62,7 +63,7 @@ export default class Example extends Component {
 
     async componentDidMount(){
         try {
-            let res = await fetch('http://walletapp.test/api/wallet');
+            let res = await fetch(`${url}/api/wallet`);
             let data = await  res.json();
             this.setState({
                 money: data.money,
