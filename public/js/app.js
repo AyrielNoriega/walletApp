@@ -66655,17 +66655,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _TransferList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./TransferList */ "./resources/js/components/TransferList.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -66720,10 +66720,62 @@ var Example = /*#__PURE__*/function (_Component) {
 
   _createClass(Example, [{
     key: "handleSubmit",
-    value: function handleSubmit(e) {
-      e.preventDefault();
-      console.log('sending');
-    }
+    value: function () {
+      var _handleSubmit = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(e) {
+        var config, res, data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                e.preventDefault();
+                console.log('sending');
+                _context.prev = 2;
+                config = {
+                  method: 'POST',
+                  headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(this.state.form)
+                };
+                _context.next = 6;
+                return fetch('http://walletapp.test/api/transfer', config);
+
+              case 6:
+                res = _context.sent;
+                _context.next = 9;
+                return res.json();
+
+              case 9:
+                data = _context.sent;
+                this.setState({
+                  transfers: this.state.transfers.concat(data),
+                  money: this.state.money + parseInt(data.amount)
+                });
+                _context.next = 16;
+                break;
+
+              case 13:
+                _context.prev = 13;
+                _context.t0 = _context["catch"](2);
+                this.setState({
+                  error: _context.t0
+                });
+
+              case 16:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[2, 13]]);
+      }));
+
+      function handleSubmit(_x) {
+        return _handleSubmit.apply(this, arguments);
+      }
+
+      return handleSubmit;
+    }()
   }, {
     key: "handleChange",
     value: function handleChange(e) {
@@ -66736,43 +66788,43 @@ var Example = /*#__PURE__*/function (_Component) {
   }, {
     key: "componentDidMount",
     value: function () {
-      var _componentDidMount = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var _componentDidMount = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var res, data;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                _context.prev = 0;
-                _context.next = 3;
+                _context2.prev = 0;
+                _context2.next = 3;
                 return fetch('http://walletapp.test/api/wallet');
 
               case 3:
-                res = _context.sent;
-                _context.next = 6;
+                res = _context2.sent;
+                _context2.next = 6;
                 return res.json();
 
               case 6:
-                data = _context.sent;
+                data = _context2.sent;
                 this.setState({
                   money: data.money,
                   transfers: data.transfers
                 });
-                _context.next = 13;
+                _context2.next = 13;
                 break;
 
               case 10:
-                _context.prev = 10;
-                _context.t0 = _context["catch"](0);
+                _context2.prev = 10;
+                _context2.t0 = _context2["catch"](0);
                 this.setState({
-                  error: _context.t0
+                  error: _context2.t0
                 });
 
               case 13:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this, [[0, 10]]);
+        }, _callee2, this, [[0, 10]]);
       }));
 
       function componentDidMount() {

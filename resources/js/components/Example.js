@@ -22,9 +22,32 @@ export default class Example extends Component {
 
     }
 
-    handleSubmit(e){
+    async handleSubmit(e){
         e.preventDefault();
         console.log('sending')
+        try {
+            let config = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(this.state.form)
+            }
+
+            let res = await fetch('http://walletapp.test/api/transfer', config);
+            let data = await  res.json();
+
+            this.setState({
+                transfers: this.state.transfers.concat(data),
+                money: this.state.money + (parseInt(data.amount))
+            });
+
+        } catch (error) {
+            this.setState({
+                error
+            })
+        }
     }
 
     handleChange(e){ //escucha eventos de los inputs
